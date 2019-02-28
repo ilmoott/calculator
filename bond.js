@@ -122,11 +122,11 @@ var app = (dt,vw)=>{
     });
 
     ovenAddBtn.addEventListener('click',()=>{
-        var oven = parseInt(ovenAddBtn.textContent);
+        var oven = parseInt(ovenInput.textContent);
 
         oven++;
 
-        ovenAddBtn.textContent = oven;
+        ovenInput.textContent = oven;
     });
 
 
@@ -139,14 +139,19 @@ var app = (dt,vw)=>{
         var bedrooms = parseInt(bedInput.textContent);
         var livingRooms = parseInt(livingInput.textContent);
         var bathrooms = parseInt(bathInput.textContent);
+        var blinds = parseInt(blindInput.textContent);
+        var oven = parseInt(ovenInput.textContent);
 
-        var quote = (bedrooms*(services.cleaning.regular.dusting + services.cleaning.regular.vacuum + services.cleaning.regular.mop))
-        + (livingRooms*(services.cleaning.regular.dusting + services.cleaning.regular.vacuum + services.cleaning.regular.mop))
-        + (bathrooms * (services.cleaning.regular.bathroom + services.cleaning.regular.mop))
-        + (services.cleaning.regular.kitchen + services.cleaning.regular.vacuum + services.cleaning.regular.mop);
+        //we should include windows
+        var quote = (bedrooms*(services.cleaning.bond.dusting + services.cleaning.bond.vacuum + services.cleaning.bond.mop + (services.cleaning.bond.wall*4)))
+        + (livingRooms*(services.cleaning.bond.dusting + services.cleaning.bond.vacuum + services.cleaning.bond.mop) + (services.cleaning.bond.wall*4))
+        + (bathrooms * (services.cleaning.bond.bathroom + services.cleaning.bond.mop))
+        + (services.cleaning.bond.kitchen + services.cleaning.bond.vacuum + services.cleaning.bond.mop)
+        + (blinds * services.cleaning.bond.blinds)
+        + (oven * services.cleaning.bond.oven);
         
         quote = Math.ceil(quote / 60).toFixed(1); //this will give us the time in hours
-        price = quote * dt.getPrices().cleaning.regular;
+        price = quote * dt.getPrices().cleaning.bond;
         
         result.textContent = `The time needed to finish this job will be approximately ${quote} hours. And the price would be ${price}$`; //we need to figure out a way to round up
     });
