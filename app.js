@@ -133,6 +133,8 @@ var app = (dt,vw)=>{
     //setting up event listener for the submit btn
     submitBtn.addEventListener('click',()=>{
 
+        console.log('clicked');
+
         var services = dt.getServices();
         var price;
 
