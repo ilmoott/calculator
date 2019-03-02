@@ -39,6 +39,7 @@ table{
     text-transform: uppercase;
         text-decoration: none;
         padding: 0.5rem 1rem;
+        margin: 0.5rem;
         display: inline-block;
         border-radius: 10rem;
         transition: all .2s;
