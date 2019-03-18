@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- TODO
+        description metatags
+    -->
+    <link rel="stylesheet" href="./style/style.css">
+<title>Quotes | Calculator</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header__header">
+            <h1 class="header__text--h1">Make it Clean</h1>
+            <h4 class="header__text--h4">Quote Calculator</h4>
+        </div>
+        <div class="header__buttons">
+            <a href="/house-cleaning" class="btn">House Cleaning</a>
+            <a href="/car-wash" class="btn">Car Was</a>
+            <a href="/carpet-cleaning" class="btn">Carpet Cleaning</a>
+        </div>
+    </header>
+
+    <section class="body">
+        <div class="body__selection">
+            <!-- the selection must be filled with javascript related to the type of service -->
+            <select name="service" id="">
+                <option value="">Regular</option>
+                <option value="">Spring</option>
+                <option value="">Bond</option>
+            </select>
+        </div>
+        <div class="body__view">
+            <table class="tasks">
+                <!-- Table will be generated with JS related to the selection -->
+                <tr>
+                    <td class="task__0--name">Bedroom</td>
+                    <td class="task__0--total">0</td>
+                    <td class="task__0--add">
+                        +
+                        <!-- add btn -->
+                    </td>
+                    <td class="task__0--sub">
+                        -
+                        <!-- sub btn -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="task__1--name">Living Room</td>
+                    <td class="task__1--total">0</td>
+                    <td class="task__1--add">
+                        +
+                        <!-- add btn -->
+                    </td>
+                    <td class="task__1--sub">
+                        -
+                        <!-- sub btn -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="task__2--name">Bathroom</td>
+                    <td class="task__2--total">0</td>
+                    <td class="task__2--add">
+                        +
+                        <!-- add btn -->
+                    </td>
+                    <td class="task__2--sub">
+                        -
+                        <!-- sub btn -->
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="body__result">
+            <div class="body__text">
+                <h3 class="body__text--h">Time:</h3>
+                <p class="body__text--p">Approximately 3 hours</p>
+            </div>
+            <div class="body__text">
+                <h3 class="body__text--h">Price:</h3>
+                <p class="body__text--p">99 $</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer__text">
+            <p class="footer__p">Don't forget to inform the customer that this is an estimate only.<br>
+                The actual length and price maybe vary according to circunstances.
+            </p>
+        </div>
+    </footer>
+
+    
+    <script src="./javascript/app.js"></script>
+</body>
+</html>
