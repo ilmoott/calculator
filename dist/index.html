@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
     <!-- TODO
         description metatags
     -->
@@ -17,81 +18,85 @@
             <h4 class="header__text--h4">Quote Calculator</h4>
         </div>
         <div class="header__buttons">
-            <a href="/house-cleaning" class="btn">House Cleaning</a>
-            <a href="/car-wash" class="btn">Car Was</a>
-            <a href="/carpet-cleaning" class="btn">Carpet Cleaning</a>
+            <div class="btn btn--green" id="houseCleaning">House Cleaning</div>
+            <div class="btn btn--green" id="carWash">Car Wash</div>
+            <div class="btn btn--green" id="carpetCleaning">Carpet Cleaning</div>
         </div>
     </header>
 
     <section class="body">
         <div class="body__selection">
             <!-- the selection must be filled with javascript related to the type of service -->
-            <select name="service" id="">
+            <label for="service">TYPE:</label>
+            <select class="selection" name="service" id="">
                 <option value="">Regular</option>
                 <option value="">Spring</option>
                 <option value="">Bond</option>
             </select>
+            <div class="body__logo-box"><img src="./logo-green.png" alt="" srcset="" class="body__logo"></div>
         </div>
         <div class="body__view">
             <table class="tasks">
                 <!-- Table will be generated with JS related to the selection -->
                 <tr>
-                    <td class="task__0--name">Bedroom</td>
-                    <td class="task__0--total">0</td>
-                    <td class="task__0--add">
-                        +
-                        <!-- add btn -->
+                    <td class="task__name--bed">Bedroom</td>
+                    <td class="task__total--bed">0</td>
+                    <td class="task__add--bed">
+                        <button class="add add--bed">+</button>
                     </td>
-                    <td class="task__0--sub">
-                        -
-                        <!-- sub btn -->
+                    <td class="task__sub--bed">
+                        <button class="sub sub--bed">-</button>
                     </td>
                 </tr>
                 <tr>
-                    <td class="task__1--name">Living Room</td>
-                    <td class="task__1--total">0</td>
-                    <td class="task__1--add">
-                        +
-                        <!-- add btn -->
+                    <td class="task__name--liv">Living Room</td>
+                    <td class="task__total--liv">0</td>
+                    <td class="task__add--liv">
+                        <button class="add add--liv">+</button>
                     </td>
-                    <td class="task__1--sub">
-                        -
-                        <!-- sub btn -->
+                    <td class="task__sub--liv">
+                        <button class="sub sub--liv">-</button>
                     </td>
                 </tr>
                 <tr>
-                    <td class="task__2--name">Bathroom</td>
-                    <td class="task__2--total">0</td>
-                    <td class="task__2--add">
-                        +
-                        <!-- add btn -->
+                    <td class="task__name--bath">Bathroom</td>
+                    <td class="task__total--bath">0</td>
+                    <td class="task__add--bath">
+                        <button class="add add--bath">+</button>
                     </td>
-                    <td class="task__2--sub">
-                        -
-                        <!-- sub btn -->
+                    <td class="task__sub--bath">
+                        <button class="sub sub--bath">-</button>
                     </td>
                 </tr>
             </table>
+            <button class="submit">Calculate</button>
         </div>
         <div class="body__result">
             <div class="body__text">
                 <h3 class="body__text--h">Time:</h3>
-                <p class="body__text--p">Approximately 3 hours</p>
+                <p class="body__text--p">Approximately <span class="bold time" id="time">3</span> <span class="bold">hours</span></p>
             </div>
             <div class="body__text">
                 <h3 class="body__text--h">Price:</h3>
-                <p class="body__text--p">99 $</p>
+                <p class="body__text--p"><span class="bold price" id="price">99</span> <span class="bold">$</span></p>
             </div>
         </div>
+
+        <footer class="footer">
+            <div class="footer__text">
+
+                <p class="footer__p">Don't forget to inform the customer that this is an estimate only.<br>
+                    The actual length and price may vary.
+                </p>
+            </div>
+            <div class="footer__exit">
+                <button class="exit">X</button>
+            </div>
+        </footer>
+        
     </section>
 
-    <footer class="footer">
-        <div class="footer__text">
-            <p class="footer__p">Don't forget to inform the customer that this is an estimate only.<br>
-                The actual length and price maybe vary according to circunstances.
-            </p>
-        </div>
-    </footer>
+    
 
     
     <script src="./javascript/app.js"></script>

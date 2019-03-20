@@ -1,0 +1,68 @@
+.body{
+    visibility: hidden;
+    padding: 8rem;
+    position: fixed;
+    width: 50%;
+    z-index: 5000;
+    top:  50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+    border-radius: 3px;
+
+    &__selection{
+        margin: 0 10rem 0 10rem;
+    }
+
+    &__view{
+        border: 1px solid $color-primary-light;
+        padding: 5rem;
+        margin: 5rem 10rem 10rem 10rem;
+        position: relative;
+    }
+
+    &__result{
+        margin: 5rem 10rem 5rem 10rem;
+        display: flex;
+        justify-content: center;
+
+        & *{
+            padding: 0 1rem 0 1rem;
+        }
+    }
+
+    &__text{
+        display: flex;
+        align-items: baseline;
+    }
+
+    &__logo-box{
+        position: absolute;
+        top: 10rem;
+        right: 20rem;
+        text-align: center;
+    }
+
+    &__logo{
+        height: 10rem;
+    }
+}
+
+select{
+    margin: 10rem;
+}
+
+table{
+    display: flex;
+}
+
+tr{
+    // display: flex;
+    // align-items: baseline;
+    border: solid 0.5px $color-primary-light;
+}
+
+td{
+    padding: 1rem 2rem 1rem 1.5rem;
+}
