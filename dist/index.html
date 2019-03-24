@@ -24,18 +24,24 @@
         </div>
     </header>
 
-    <section class="body">
-        <div class="body__selection">
+    <section class="popup">
+        <div class="popup__header">
             <!-- the selection must be filled with javascript related to the type of service -->
             <label for="service">TYPE:</label>
-            <select class="selection" name="service" id="">
-                <option value="">Regular</option>
-                <option value="">Spring</option>
-                <option value="">Bond</option>
-            </select>
-            <div class="body__logo-box"><img src="./logo-green.png" alt="" srcset="" class="body__logo"></div>
+            <!-- <select class="selection" name="service" id="">
+                <option value="regular">Regular</option>
+                <option value="spring">Spring</option>
+                <option value="bond">Bond</option>
+            </select> -->
+            <div name="options" class="popup__options">
+                <button class="btn btn--green" id="regular">Regular</button>
+                <button class="btn btn--green" id="spring">Spring</button>
+                <button class="btn btn--green" id="bond">Bond</button>
+            </div>
+            
+            <div class="popup__logo-box"><img src="./logo-green.png" alt="" srcset="" class="popup__logo"></div>
         </div>
-        <div class="body__view">
+        <div class="popup__view">
             <table class="tasks">
                 <!-- Table will be generated with JS related to the selection -->
                 <tr>
@@ -71,14 +77,14 @@
             </table>
             <button class="submit">Calculate</button>
         </div>
-        <div class="body__result">
-            <div class="body__text">
-                <h3 class="body__text--h">Time:</h3>
-                <p class="body__text--p">Approximately <span class="bold time" id="time">3</span> <span class="bold">hours</span></p>
+        <div class="popup__result">
+            <div class="popup__text">
+                <h3 class="popup__text--h">Time:</h3>
+                <p class="popup__text--p">Approximately <span class="bold time" id="time">0</span> <span class="bold">hours</span></p>
             </div>
-            <div class="body__text">
-                <h3 class="body__text--h">Price:</h3>
-                <p class="body__text--p"><span class="bold price" id="price">99</span> <span class="bold">$</span></p>
+            <div class="popup__text">
+                <h3 class="popup__text--h">Price:</h3>
+                <p class="popup__text--p"><span class="bold price" id="price">0</span> <span class="bold">$</span></p>
             </div>
         </div>
 

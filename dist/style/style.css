@@ -106,7 +106,7 @@ transform: translate(-50%,-50%);
   .header__header__text-box {
     text-align: center; }
 
-.body {
+.popup {
   visibility: hidden;
   padding: 8rem;
   position: fixed;
@@ -118,28 +118,28 @@ transform: translate(-50%,-50%);
   background-color: white;
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
   border-radius: 3px; }
-  .body__selection {
+  .popup__selection {
     margin: 0 10rem 0 10rem; }
-  .body__view {
+  .popup__view {
     border: 1px solid #7ed56f;
     padding: 5rem;
     margin: 5rem 10rem 10rem 10rem;
     position: relative; }
-  .body__result {
+  .popup__result {
     margin: 5rem 10rem 5rem 10rem;
     display: flex;
     justify-content: center; }
-    .body__result * {
+    .popup__result * {
       padding: 0 1rem 0 1rem; }
-  .body__text {
+  .popup__text {
     display: flex;
     align-items: baseline; }
-  .body__logo-box {
+  .popup__logo-box {
     position: absolute;
     top: 10rem;
     right: 20rem;
     text-align: center; }
-  .body__logo {
+  .popup__logo {
     height: 10rem; }
 
 select {
