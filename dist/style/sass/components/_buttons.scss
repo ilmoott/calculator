@@ -21,6 +21,10 @@ or purple (after clicked)
         //Change for the <button> element
         border: none;
         cursor: pointer;
+
+        @include respond(tab-port){
+        padding: 1rem 2rem;
+    }
     }
     
     
@@ -62,6 +66,16 @@ or purple (after clicked)
         background-color: $color-primary;
         color: $color-white;
         margin: 5rem;
+
+        @include respond(tab-port){
+        margin: 2rem;
+
+        }
+
+        @include respond(phone){
+        font-size: 1.2rem;
+        margin: 1rem;
+    }
 
         &::after{
             background-color: $color-primary;
@@ -121,6 +135,15 @@ or purple (after clicked)
     &:active{
         transform: translateY(1px);
         box-shadow: 0 .5rem 1rem rgba($color-black, .15);
+    }
+
+}
+
+.active{
+    color:$color-secondary-light;
+
+    &:hover{
+        background-color: $color-secondary-light;
     }
 }
 

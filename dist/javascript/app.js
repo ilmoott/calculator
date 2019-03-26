@@ -9,10 +9,13 @@ const view = (function(){
             addNum: '.add--',
             subNum: '.sub--',
             exit: '.exit',
-            submit: '.submit'
+            submit: '.submit',
+            addBtns: '.add',
+            subBtns: '.sub'
         },
         elements:{
             popup: '.popup',
+            popupHeader: '.popup__header',
             popupView: '.popup__view',
             task__name: '.task__name--',
             task__total: '.task__total--',
@@ -264,7 +267,8 @@ const data = (function(){
                 blinds: 20,
                 oven: 120
             }
-        }
+        },
+        carpetCleaning: 30
     };
 
     var prices = {
@@ -272,7 +276,8 @@ const data = (function(){
             regular:33,
             spring: 43,
             bond: 48
-        }
+        },
+        carpetCleaning: 40
     };
 
     return{
@@ -307,16 +312,24 @@ const data = (function(){
             }
             
             else if(service === 'carWash'){
-
+                return serviceLength[service];
             }
             
             else if(service === 'carpetCleaning'){
-
+                // return (rooms)=>{
+                //     rooms * serviceLength[service];
+                // }
+                return serviceLength[service];
             }
         },
 
         getPrice : (service, type)=>{
-            return prices[service][type];
+            if(service === 'houseCleaning'){
+                return prices[service][type];
+            }else{
+                return prices[service];
+            }
+            
         }
     };
 })();
@@ -328,13 +341,16 @@ const controller = (function (view, data) {
 
     //ELEMENT SELECTORS
     const popup = document.querySelector(view.getSelectors().elements.popup);
+    const popupHeader = document.querySelector(view.getSelectors().elements.popupHeader);
     const popupView = document.querySelector(view.getSelectors().elements.popupView);
     const homeButtons = document.querySelectorAll(view.getSelectors().buttons.homeButtons);
     const exit = document.querySelector(view.getSelectors().buttons.exit);
 
     //TODO:
-    const addButtons = document.querySelectorAll(view.getSelectors().buttons.addNum);
-    const subButtons = document.querySelectorAll(view.getSelectors().buttons.subNum);
+    const addButtons = document.querySelectorAll(view.getSelectors().buttons.addBtns);
+    const subButtons = document.querySelectorAll(view.getSelectors().buttons.subBtns);
+
+    
     
 
     let state = {};
@@ -343,20 +359,95 @@ const controller = (function (view, data) {
     homeButtons.forEach((e) => {
 
         e.addEventListener('click', (el) => {
-            state.serviceName = el.target.id;
+            state.serviceName = el.target.id; //TODO: this is not working
             console.log(state.serviceName);
 
             if(state.serviceName === 'houseCleaning'){
                 state.typeID = 'regular';
+                //maybe render the Html from here
                 popup.style.visibility = "visible";
+                
             }
             else if(state.serviceName === 'carWash'){
-                popup.innerHTML = 'Under development...';
+                popup.innerHTML = `
+                <table class="tasks">
+                    <tr>
+                        <th>Cart Type</th>
+                        <th>Exterior</th>
+                        <th>Interior</th>
+                        <th>Polishing</th>
+                        <th>Full interior</th>
+                    </tr>
+                    <tr>
+                        <td>Hatch</td>
+                        <td>25$</td>
+                        <td>50$</td>
+                        <td>75$</td>
+                        <td>120$</td>
+                    </tr>
+                    <tr>
+                        <td>Sedan</td>
+                        <td>25$</td>
+                        <td>50$</td>
+                        <td>75$</td>
+                        <td>120$</td>
+                    </tr>
+                    <tr>
+                        <td>SUV</td>
+                        <td>35$</td>
+                        <td>75$</td>
+                        <td>100$</td>
+                        <td>180$</td>
+                    </tr>
+                </table>
+                <button class="exit">X</button>
+                `;
                 popup.style.visibility = "visible";
+                
             }
             else if(state.serviceName === 'carpetCleaning'){
-                popup.innerHTML = 'Under development...';
+                popup.innerHTML = `
+                <div class="popup__view">
+                    <table class="tasks">
+                    
+                    <tr>
+                        <td class="task__name--carpet">Number of Rooms</td>
+                        <td class="task__total--carpet">0</td>
+                        <td class="task__add--carpet">
+                            <button class="add add--carpet">+</button>
+                        </td>
+                        <td class="task__sub--carpet">
+                            <button class="sub sub--carpet">-</button>
+                        </td>
+                    </tr>
+                </table>
+                <button class="submit">Calculate</button>
+                </div>
+                <div class="popup__result">
+                    <div class="popup__text">
+                        <h3 class="popup__text--h">Time:</h3>
+                        <p class="popup__text--p">Approximately <span class="bold time" id="time">0</span> <span class="bold">hours</span></p>
+                    </div>
+                    <div class="popup__text">
+                        <h3 class="popup__text--h">Price:</h3>
+                        <p class="popup__text--p"><span class="bold price" id="price">0</span> <span class="bold">$</span></p>
+                    </div>
+                </div>
+
+                <footer class="footer">
+                    <div class="footer__text">
+
+                        <p class="footer__p">Don't forget to inform the customer that this is an estimate only.<br>
+                            The actual length and price may vary.
+                        </p>
+                    </div>
+                    <div class="footer__exit">
+                        <button class="exit">X</button>
+                    </div>
+                </footer>
+                `;
                 popup.style.visibility = "visible";
+                popupHeader.innerHtml = ``;
             }
         });
     });
@@ -366,6 +457,7 @@ const controller = (function (view, data) {
     // //Popup close event listener
     exit.addEventListener('click', () => {
         popup.style.visibility = "hidden";
+        state.serviceName = '';
 
         const DOMStr = view.getSelectors();
         const tags = (service, type) => {
@@ -373,7 +465,9 @@ const controller = (function (view, data) {
         };
         
         tags(state.serviceName, state.typeID).forEach((item) => {
-        document.querySelector(`${DOMStr.elements.task__total}${item}`).textContent = 0;
+            if(document.querySelector(`${DOMStr.elements.task__total}${item}`)){
+                document.querySelector(`${DOMStr.elements.task__total}${item}`).textContent = 0;
+            }
         document.querySelector(DOMStr.elements.time).textContent = 0;
         document.querySelector(DOMStr.elements.price).textContent = 0;
         });
@@ -417,14 +511,97 @@ const controller = (function (view, data) {
         }
 
 
+        //EXIT BUTTON
+
+        //TODO: fix the .getTags()
+        if(e.target.matches(view.getSelectors().buttons.exit)){
+            popup.style.visibility = "hidden";
+
+            const DOMStr = view.getSelectors();
+            // const tags = (service, type) => {
+            //     return view.getTags(service, type);
+            // };
+            
+            view.getTags(state.serviceName, state.typeID).forEach((item) => {
+                if(document.querySelector(`${DOMStr.elements.task__total}${item}`)){
+                    document.querySelector(`${DOMStr.elements.task__total}${item}`).textContent = 0;
+                }
+            
+            document.querySelector(DOMStr.elements.time).textContent = 0;
+            document.querySelector(DOMStr.elements.price).textContent = 0;
+        })};
+
 
         //ADD & SUB BUTTONS
         //TODO:
-        addButtons.forEach((btn)=>{
-            btn.addEventListener('click', ()=>{
-                console.log('Cuzinho');
-            });
-        });
+        if(e.target.matches('.add')){
+            e.target.parentNode.previousSibling.previousSibling.innerHTML = parseInt(e.target.parentNode.previousSibling.previousSibling.innerHTML);
+            e.target.parentNode.previousSibling.previousSibling.innerHTML ++;
+        }
+        else if(e.target.matches('.sub')){
+            e.target.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML = parseInt(e.target.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML);
+            e.target.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML --;
+        }
+
+
+        //SUBMIT BUTTON
+        if(e.target.matches('.submit')){
+            if(state.serviceName === 'houseCleaning'){
+                if(state.typeID === 'regular'){
+                    let bedCount = parseInt(document.querySelector('.task__total--bed').innerHTML);
+                    let livCount = parseInt(document.querySelector('.task__total--bed').innerHTML);
+                    let bathCount = parseInt(document.querySelector('.task__total--bed').innerHTML);
+
+                    let x = data.getTime(state.serviceName, state.typeID);
+                    let result = x(bedCount,livCount,bathCount) / 60;
+
+                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.textContent = result.toFixed(2);
+                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.lastChild.previousSibling.firstChild.textContent = (result * 33).toFixed(2);
+                }
+                
+                else if(state.typeID === 'spring'){
+                    let bedCount = parseInt(document.querySelector('.task__total--bed').innerHTML);
+                    let livCount = parseInt(document.querySelector('.task__total--bed').innerHTML);
+                    let bathCount = parseInt(document.querySelector('.task__total--bed').innerHTML);
+                    let blindCount = parseInt(document.querySelector('.task__total--blnd').innerHTML);
+                    let fanCount = parseInt(document.querySelector('.task__total--fan').innerHTML);
+                    let ovenCount = parseInt(document.querySelector('.task__total--oven').innerHTML);
+
+                    let x = data.getTime(state.serviceName, state.typeID);
+                    let result = x(bedCount,livCount,bathCount,blindCount,fanCount, ovenCount) / 60;
+
+                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.textContent = result.toFixed(2);
+                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.lastChild.previousSibling.firstChild.textContent = (result * 43).toFixed(2);
+                }
+
+                else if(state.typeID === 'bond'){
+                    let bedCount = parseInt(document.querySelector('.task__total--bed').innerHTML);
+                    let livCount = parseInt(document.querySelector('.task__total--bed').innerHTML);
+                    let bathCount = parseInt(document.querySelector('.task__total--bed').innerHTML);
+                    let blindCount = parseInt(document.querySelector('.task__total--blnd').innerHTML);
+                    let fanCount = parseInt(document.querySelector('.task__total--fan').innerHTML);
+                    let ovenCount = parseInt(document.querySelector('.task__total--oven').innerHTML);
+
+                    let x = data.getTime(state.serviceName, state.typeID);
+                    let result = x(bedCount,livCount,bathCount,blindCount,fanCount, ovenCount) / 60;
+
+                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.textContent = result.toFixed(2);
+                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.lastChild.previousSibling.firstChild.textContent = (result * 48).toFixed(2);
+                }
+            }
+            else if(state.serviceName === 'carpetCleaning'){
+                let roomCount = parseInt(document.querySelector('.task__total--carpet').innerHTML);
+                
+
+                    let x = data.getTime(state.serviceName) * roomCount;
+                    
+                    let result = x / 60;
+
+                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.textContent = result.toFixed(2);
+                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.lastChild.previousSibling.firstChild.textContent = (roomCount * data.getPrice(state.serviceName)).toFixed(2);
+            }
+        }
+        
         
     });
 

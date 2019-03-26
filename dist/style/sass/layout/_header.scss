@@ -1,5 +1,9 @@
 .header__buttons{
     text-align: center;
+    
+    @include respond(phone){
+        margin: -2rem;
+    }
 }
 
 .header__header {
@@ -12,6 +16,14 @@
     background-size: cover;
     background-position: top;
     position: relative;
+
+    @include respond(tab-port){
+        height: 60vh;
+    }
+
+    @include respond(phone){
+        height: 50vh;
+    }
 
 
     @supports   (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)){
@@ -60,4 +72,30 @@ transform: translate(-50%,-50%);
         text-align: center;
     }
 
+}
+
+.header__text--h1{
+
+
+    @include respond(tab-port){
+        font-size: 5rem;
+    }
+
+    @include respond(phone){
+        font-size: 4rem;
+        padding: 1rem;
+    }
+}
+
+.header__text--h4{
+
+
+    @include respond(tab-port){
+        font-size: 2rem;
+    }
+
+    @include respond(phone){
+        font-size: 1.5rem;
+        padding: 1rem;
+    }
 }
