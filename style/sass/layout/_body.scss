@@ -118,6 +118,23 @@ tr{
     border: solid 0.5px $color-primary-light;
 }
 
+th{
+    font-weight: bolder;
+    text-transform: uppercase;
+    color: $color-primary;
+}
+
 td{
     padding: 1rem 2rem 1rem 1.5rem;
+    
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.carCell{
+    border: 1px solid $color-grey-light-2;
+    padding: 0.5rem;
 }

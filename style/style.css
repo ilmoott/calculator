@@ -82,7 +82,7 @@ select {
   text-align: center; }
   @media screen and (max-width: 37.5em) {
     .header__buttons {
-      margin: -2rem; } }
+      margin: -3rem; } }
 
 .header__header {
   height: 75vh;
@@ -218,8 +218,21 @@ table {
 tr {
   border: solid 0.5px #7ed56f; }
 
+th {
+  font-weight: bolder;
+  text-transform: uppercase;
+  color: #55c57a; }
+
 td {
   padding: 1rem 2rem 1rem 1.5rem; }
+
+body {
+  margin: 0;
+  padding: 0; }
+
+.carCell {
+  border: 1px solid #eee;
+  padding: 0.5rem; }
 
 /*
 btn:link and btn:visited is to style the link to not be blue (before clicked)

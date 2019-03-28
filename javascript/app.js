@@ -342,7 +342,7 @@ const controller = (function (view, data) {
     //ELEMENT SELECTORS
     const popup = document.querySelector(view.getSelectors().elements.popup);
     const popupHeader = document.querySelector(view.getSelectors().elements.popupHeader);
-    const popupView = document.querySelector(view.getSelectors().elements.popupView);
+    //const popupView = document.querySelector(view.getSelectors().elements.popupView);
     const homeButtons = document.querySelectorAll(view.getSelectors().buttons.homeButtons);
     const exit = document.querySelector(view.getSelectors().buttons.exit);
 
@@ -360,11 +360,76 @@ const controller = (function (view, data) {
 
         e.addEventListener('click', (el) => {
             state.serviceName = el.target.id; //TODO: this is not working
-            console.log(state.serviceName);
 
             if(state.serviceName === 'houseCleaning'){
                 state.typeID = 'regular';
                 //maybe render the Html from here
+                popup.innerHTML = `<div class="popup__header">
+                <div name="options" class="popup__options">
+                    <button class="btn btn--green" id="regular">Regular</button>
+                    <button class="btn btn--green" id="spring">Spring</button>
+                    <button class="btn btn--green" id="bond">Bond</button>
+                </div>
+                
+            </div>
+            <div class="popup__view">
+                <!-- <table class="tasks">
+                    
+                    <tr>
+                        <td class="task__name--bed">Bedroom</td>
+                        <td class="task__total--bed">0</td>
+                        <td class="task__add--bed">
+                            <button class="add add--bed">+</button>
+                        </td>
+                        <td class="task__sub--bed">
+                            <button class="sub sub--bed">-</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task__name--liv">Living Room</td>
+                        <td class="task__total--liv">0</td>
+                        <td class="task__add--liv">
+                            <button class="add add--liv">+</button>
+                        </td>
+                        <td class="task__sub--liv">
+                            <button class="sub sub--liv">-</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task__name--bath">Bathroom</td>
+                        <td class="task__total--bath">0</td>
+                        <td class="task__add--bath">
+                            <button class="add add--bath">+</button>
+                        </td>
+                        <td class="task__sub--bath">
+                            <button class="sub sub--bath">-</button>
+                        </td>
+                    </tr>
+                </table>
+                <button class="submit">Calculate</button> -->
+            </div>
+            <div class="popup__result">
+                <div class="popup__text">
+                    <h3 class="popup__text--h">Time:</h3>
+                    <p class="popup__text--p"><span class="bold time" id="time">0</span> <span class="bold">hours</span></p>
+                </div>
+                <div class="popup__text">
+                    <h3 class="popup__text--h">Price:</h3>
+                    <p class="popup__text--p"><span class="bold price" id="price">0</span> <span class="bold">$</span></p>
+                </div>
+            </div>
+    
+            <footer class="footer">
+                <div class="footer__text">
+    
+                    <p class="footer__p">Don't forget to inform the customer that this is an estimate only.<br>
+                        The actual length and price may vary.
+                    </p>
+                </div>
+                <div class="footer__exit">
+                    <button class="exit">X</button>
+                </div>
+            </footer>`;
                 popup.style.visibility = "visible";
                 
             }
@@ -372,32 +437,32 @@ const controller = (function (view, data) {
                 popup.innerHTML = `
                 <table class="tasks">
                     <tr>
-                        <th>Cart Type</th>
-                        <th>Exterior</th>
-                        <th>Interior</th>
-                        <th>Polishing</th>
-                        <th>Full interior</th>
+                        <th class="carCell">Car</th>
+                        <th class="carCell">Exterior</th>
+                        <th class="carCell">Interior</th>
+                        <th class="carCell">Polishing</th>
+                        <th class="carCell">Full interior</th>
                     </tr>
                     <tr>
-                        <td>Hatch</td>
-                        <td>25$</td>
-                        <td>50$</td>
-                        <td>75$</td>
-                        <td>120$</td>
+                        <td class="carCell">Hatch</td>
+                        <td class="carCell">25$</td>
+                        <td class="carCell">50$</td>
+                        <td class="carCell">75$</td>
+                        <td class="carCell">120$</td>
                     </tr>
                     <tr>
-                        <td>Sedan</td>
-                        <td>25$</td>
-                        <td>50$</td>
-                        <td>75$</td>
-                        <td>120$</td>
+                        <td class="carCell">Sedan</td>
+                        <td class="carCell">25$</td>
+                        <td class="carCell">50$</td>
+                        <td class="carCell">75$</td>
+                        <td class="carCell">120$</td>
                     </tr>
                     <tr>
-                        <td>SUV</td>
-                        <td>35$</td>
-                        <td>75$</td>
-                        <td>100$</td>
-                        <td>180$</td>
+                        <td class="carCell">SUV</td>
+                        <td class="carCell">35$</td>
+                        <td class="carCell">75$</td>
+                        <td class="carCell">100$</td>
+                        <td class="carCell">180$</td>
                     </tr>
                 </table>
                 <button class="exit">X</button>
@@ -478,36 +543,39 @@ const controller = (function (view, data) {
 
     //POPUP EVENT LISTENER
     popup.addEventListener('click', (e) => {
+
+        
         //TypeID selector buttons
         if (e.target.matches('#regular')){
             state.serviceName = 'houseCleaning';
             state.typeID = 'regular';
-            popupView.innerHTML = view.getHtml(state.serviceName, state.typeID);
+            e.target.parentNode.parentNode.nextSibling.nextSibling.innerHTML = view.getHtml(state.serviceName, state.typeID);
         }
         else if (e.target.matches('#spring')){
             state.serviceName = 'houseCleaning';
             state.typeID = 'spring';
-            popupView.innerHTML = view.getHtml(state.serviceName, state.typeID);
+            e.target.parentNode.parentNode.nextSibling.nextSibling.innerHTML = view.getHtml(state.serviceName, state.typeID);
+
         }
         else if (e.target.matches('#bond')){
             state.serviceName = 'houseCleaning';
             state.typeID = 'bond';
-            popupView.innerHTML = view.getHtml(state.serviceName, state.typeID);
+            e.target.parentNode.parentNode.nextSibling.nextSibling.innerHTML = view.getHtml(state.serviceName, state.typeID);
         }
         else if (e.target.matches('#hatch')){
             state.serviceName = 'carWash';
             state.typeID = 'hatch';
-            popupView.innerHTML = view.getHtml(state.serviceName, state.typeID);
+            e.target.parentNode.parentNode.nextSibling.nextSibling.innerHTML = view.getHtml(state.serviceName, state.typeID);
         }
         else if (e.target.matches('#sedan')){
             state.serviceName = 'carWash';
             state.typeID = 'sedan';
-            popupView.innerHTML = view.getHtml(state.serviceName, state.typeID);
+            e.target.parentNode.parentNode.nextSibling.nextSibling.innerHTML = view.getHtml(state.serviceName, state.typeID);
         }
         else if (e.target.matches('#suv')){
             state.serviceName = 'carWash';
             state.typeID = 'suv';
-            popupView.innerHTML = view.getHtml(state.serviceName, state.typeID);
+            e.target.parentNode.parentNode.nextSibling.nextSibling.innerHTML = view.getHtml(state.serviceName, state.typeID);
         }
 
 
@@ -555,7 +623,8 @@ const controller = (function (view, data) {
                     let x = data.getTime(state.serviceName, state.typeID);
                     let result = x(bedCount,livCount,bathCount) / 60;
 
-                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.textContent = result.toFixed(2);
+                    //e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.textContent = result.toFixed(2);
+                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent = result.toFixed(2);
                     e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.lastChild.previousSibling.firstChild.textContent = (result * 33).toFixed(2);
                 }
                 
@@ -570,7 +639,7 @@ const controller = (function (view, data) {
                     let x = data.getTime(state.serviceName, state.typeID);
                     let result = x(bedCount,livCount,bathCount,blindCount,fanCount, ovenCount) / 60;
 
-                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.textContent = result.toFixed(2);
+                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent = result.toFixed(2);
                     e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.lastChild.previousSibling.firstChild.textContent = (result * 43).toFixed(2);
                 }
 
@@ -585,7 +654,7 @@ const controller = (function (view, data) {
                     let x = data.getTime(state.serviceName, state.typeID);
                     let result = x(bedCount,livCount,bathCount,blindCount,fanCount, ovenCount) / 60;
 
-                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.textContent = result.toFixed(2);
+                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent = result.toFixed(2);
                     e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.lastChild.previousSibling.firstChild.textContent = (result * 48).toFixed(2);
                 }
             }
@@ -597,7 +666,7 @@ const controller = (function (view, data) {
                     
                     let result = x / 60;
 
-                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.textContent = result.toFixed(2);
+                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent = result.toFixed(2);
                     e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.lastChild.previousSibling.firstChild.textContent = (roomCount * data.getPrice(state.serviceName)).toFixed(2);
             }
         }
