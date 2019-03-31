@@ -10,7 +10,7 @@ or purple (after clicked)
     &:visited {
         text-transform: uppercase;
         text-decoration: none;
-        padding: 1rem 4rem;
+        padding: 1rem 3rem;
         display: inline-block;
         border-radius: 10rem;
         font-size: 1.6rem;
@@ -73,8 +73,9 @@ or purple (after clicked)
         }
 
         @include respond(phone){
-        font-size: 1.2rem;
-        margin: 1rem;
+        font-size: 1rem;
+        margin: 0.5rem;
+        padding: 1rem;
     }
 
         &::after{
@@ -224,6 +225,8 @@ or purple (after clicked)
     &,
     &:link,
     &:visited {
+        max-width: 20rem;
+        flex-basis: 60%;
         text-transform: uppercase;
         text-decoration: none;
         padding: 0.7rem 2rem;
@@ -231,15 +234,23 @@ or purple (after clicked)
         border-radius: 10rem;
         font-size: 1.4rem;
         transition: all .2s;
-        position: absolute;
-        bottom: 3rem;
-        right: 50%;
-        transform: translate(50%, 50%);
+        // position: absolute;
+        // bottom: 3rem;
+        // right: 50%;
+        //transform: translate(50%, 50%);
         font-size: $default-font-size;
      
 
         //Change for the <button> element
         border: none;
         cursor: pointer;
+
+        @include respond(phone){
+        font-size: 1rem;
+        margin: 1rem 0 1rem 0; 
+        padding: 1rem;
     }
+    }
+
+    
 }

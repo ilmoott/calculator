@@ -28,27 +28,17 @@ body {
 .header__header {
   text-align: center; }
 
-.header__text--h1 {
-  color: white;
-  font-size: 10rem;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%); }
-  @media screen and (max-width: 37.5em) {
-    .header__text--h1 {
-      top: 30%; } }
-
-.header__text--h4 {
-  color: white;
-  font-size: 2rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); }
-  @media screen and (max-width: 37.5em) {
-    .header__text--h4 {
-      top: 60%; } }
+.header__text {
+  display: flex; }
+  .header__text--h1 {
+    color: white;
+    font-size: 10rem; }
+    @media screen and (max-width: 37.5em) {
+      .header__text--h1 {
+        top: 30%; } }
+  .header__text--h4 {
+    color: white;
+    font-size: 2rem; }
 
 .body {
   font-size: 1.8rem; }
@@ -79,10 +69,12 @@ select {
   text-align: center; }
 
 .header__buttons {
+  text-align: center;
+  max-width: 100%;
   text-align: center; }
   @media screen and (max-width: 37.5em) {
     .header__buttons {
-      margin: -3rem; } }
+      margin-top: -3rem; } }
 
 .header__header {
   height: 75vh;
@@ -90,6 +82,10 @@ select {
   background-size: cover;
   background-position: top;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   /*
 HOW TO CENTER AN ITEM:
 top & left: 50%
@@ -121,23 +117,29 @@ transform: translate(-50%,-50%);
   .header__header__text-box {
     text-align: center; }
 
-@media screen and (max-width: 56.25em) {
+.header__text {
+  display: flex;
+  align-items: space-around;
+  justify-content: space-around; }
   .header__text--h1 {
-    font-size: 5rem; } }
-
-@media screen and (max-width: 37.5em) {
-  .header__text--h1 {
-    font-size: 4rem;
-    padding: 1rem; } }
-
-@media screen and (max-width: 56.25em) {
+    flex-basis: 100%; }
+    @media screen and (max-width: 56.25em) {
+      .header__text--h1 {
+        font-size: 5rem; } }
+    @media screen and (max-width: 37.5em) {
+      .header__text--h1 {
+        font-size: 4rem;
+        padding: 1rem; } }
   .header__text--h4 {
-    font-size: 2rem; } }
-
-@media screen and (max-width: 37.5em) {
-  .header__text--h4 {
-    font-size: 1.5rem;
-    padding: 1rem; } }
+    flex-basis: 100%;
+    margin-top: -20rem; }
+    @media screen and (max-width: 56.25em) {
+      .header__text--h4 {
+        font-size: 2rem; } }
+    @media screen and (max-width: 37.5em) {
+      .header__text--h4 {
+        font-size: 1.5rem;
+        padding: 1rem; } }
 
 .popup {
   visibility: hidden;
@@ -162,7 +164,7 @@ transform: translate(-50%,-50%);
       width: 90%; } }
   @media screen and (max-width: 37.5em) {
     .popup {
-      padding: 2rem;
+      padding: 0.5rem;
       width: 100%;
       height: 100%; } }
   .popup__options {
@@ -178,7 +180,15 @@ transform: translate(-50%,-50%);
     border: 1px solid #7ed56f;
     padding: 5rem;
     margin: 0;
-    position: relative; }
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center; }
+    @media screen and (max-width: 37.5em) {
+      .popup__view {
+        padding: 2rem; } }
   .popup__result {
     margin: 5rem 10rem 5rem 10rem;
     display: flex;
@@ -212,8 +222,17 @@ select {
   margin: 10rem; }
 
 table {
+  margin: auto;
+  flex-basis: 100%;
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  align-items: top; }
+  @media screen and (max-width: 75em) {
+    table {
+      font-size: 1.8rem; } }
+  @media screen and (max-width: 37.5em) {
+    table {
+      font-size: 1rem; } }
 
 tr {
   border: solid 0.5px #7ed56f; }
@@ -224,15 +243,31 @@ th {
   color: #55c57a; }
 
 td {
-  padding: 1rem 2rem 1rem 1.5rem; }
+  padding: 1rem 2rem 1rem 1.5rem;
+  text-align: center; }
 
 body {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  max-width: 100%; }
 
 .carCell {
   border: 1px solid #eee;
   padding: 0.5rem; }
+
+.tasks--car {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  background-color: #fcf9f9;
+  color: #c1c1c1; }
+  .tasks--car th {
+    font-weight: bolder;
+    text-transform: uppercase;
+    background-color: #55c57a;
+    color: white; }
 
 /*
 btn:link and btn:visited is to style the link to not be blue (before clicked)
@@ -255,7 +290,7 @@ or purple (after clicked)
   .btn, .btn:link, .btn:visited {
     text-transform: uppercase;
     text-decoration: none;
-    padding: 1rem 4rem;
+    padding: 1rem 3rem;
     display: inline-block;
     border-radius: 10rem;
     font-size: 1.6rem;
@@ -295,8 +330,9 @@ or purple (after clicked)
         margin: 2rem; } }
     @media screen and (max-width: 37.5em) {
       .btn--green {
-        font-size: 1.2rem;
-        margin: 1rem; } }
+        font-size: 1rem;
+        margin: 0.5rem;
+        padding: 1rem; } }
     .btn--green::after {
       background-color: #55c57a; }
   .btn::after {
@@ -396,6 +432,8 @@ or purple (after clicked)
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); }
 
 .submit, .submit:link, .submit:visited {
+  max-width: 20rem;
+  flex-basis: 60%;
   text-transform: uppercase;
   text-decoration: none;
   padding: 0.7rem 2rem;
@@ -403,10 +441,11 @@ or purple (after clicked)
   border-radius: 10rem;
   font-size: 1.4rem;
   transition: all .2s;
-  position: absolute;
-  bottom: 3rem;
-  right: 50%;
-  transform: translate(50%, 50%);
   font-size: 1.6rem;
   border: none;
   cursor: pointer; }
+  @media screen and (max-width: 37.5em) {
+    .submit, .submit:link, .submit:visited {
+      font-size: 1rem;
+      margin: 1rem 0 1rem 0;
+      padding: 1rem; } }
