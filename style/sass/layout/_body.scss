@@ -61,7 +61,8 @@
         //         width: 100%;
         //     }
         @include respond(phone){
-            padding: 2rem;
+            padding: 0.5rem;
+            max-height: 100%;
         }
     }
 
@@ -72,9 +73,10 @@
         flex-wrap: wrap;
 
         @include respond(phone){
-        margin: 2rem 3rem 2rem 3rem;
+        margin: 2rem 2rem 2rem 2rem;
         justify-content: left;
         text-align: left;
+        font-size: 1rem;
     }
 
         & *{

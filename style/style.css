@@ -60,6 +60,10 @@ select {
   font-size: 2.5rem;
   color: #55c57a; }
 
+@media screen and (max-width: 37.5em) {
+  .popup__text--h {
+    font-size: 1rem; } }
+
 .footer__exit {
   justify-content: right;
   text-align: right;
@@ -188,7 +192,8 @@ transform: translate(-50%,-50%);
     align-items: center; }
     @media screen and (max-width: 37.5em) {
       .popup__view {
-        padding: 2rem; } }
+        padding: 0.5rem;
+        max-height: 100%; } }
   .popup__result {
     margin: 5rem 10rem 5rem 10rem;
     display: flex;
@@ -196,9 +201,10 @@ transform: translate(-50%,-50%);
     flex-wrap: wrap; }
     @media screen and (max-width: 37.5em) {
       .popup__result {
-        margin: 2rem 3rem 2rem 3rem;
+        margin: 2rem 2rem 2rem 2rem;
         justify-content: left;
-        text-align: left; } }
+        text-align: left;
+        font-size: 1rem; } }
     .popup__result * {
       padding: 0 1rem 0 1rem; }
   .popup__text {
