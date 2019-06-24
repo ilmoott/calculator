@@ -150,9 +150,10 @@ or purple (after clicked)
 
 
 .exit{
-    position: absolute;
-    top: 90%;
-    right: 5%;
+    //position: absolute;
+    //bottom: 3%;
+    //margin: 1rem;
+    //right: 4%;
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 100%;
@@ -160,6 +161,26 @@ or purple (after clicked)
     color: white;
     border: none;
     text-decoration: none;
+
+    &--car{
+        position: absolute;
+        bottom: 3%;
+        margin: 1rem;
+        right: 4%;
+
+        &:hover{
+            background-color: $color-primary;
+            color: $color-white;
+            transform: translateY(-2px);
+            box-shadow: 0 1rem 2rem rgba($color-black, .15);
+        }
+    
+        &:active{
+            transform: translateY(1px);
+            box-shadow: 0 .5rem 1rem rgba($color-black, .15);
+        }
+
+    }
 
     &:hover{
         background-color: $color-primary;

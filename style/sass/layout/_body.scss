@@ -76,7 +76,6 @@
         margin: 2rem 2rem 2rem 2rem;
         justify-content: left;
         text-align: left;
-        font-size: 1rem;
     }
 
         & *{
@@ -121,15 +120,6 @@ table{
     display: flex;
     justify-content: center;
     align-items: top;
-    
-
-    @include respond(tab-land){
-        font-size: 1.8rem;
-    }
-
-    @include respond(phone){
-        font-size: 1rem;
-    }
 }
 
 
@@ -139,11 +129,6 @@ tr{
     border: solid 0.5px $color-primary-light;
 }
 
-th{
-    font-weight: bolder;
-    text-transform: uppercase;
-    color: $color-primary;
-}
 
 td{
     padding: 1rem 2rem 1rem 1.5rem;
@@ -168,12 +153,8 @@ body{
     transform: translate(-50%,-50%);
     width: 80%;
     background-color: #fcf9f9;
-    color: #c1c1c1;
 
     th{
-        font-weight: bolder;
-        text-transform: uppercase;
         background-color: $color-primary;
-        color: white;
     }
 }

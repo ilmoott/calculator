@@ -1,5 +1,6 @@
 .footer{
-
+    display: flex;
+    flex-direction: column;
 
     &__exit{
         justify-content: right;

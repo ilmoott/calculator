@@ -7,35 +7,21 @@ body {
     
 }
 
-.header__header{
-    text-align: center;
-}
+table {
 
-.header__text{
-    display: flex;
-
-    &--h1{
-        color: white;
-        font-size: 10rem;
-    
-
-        @include respond(phone){
-        top: 30%;
-    }
+    @include respond(tab-land) {
+        font-size: 1.8rem;
     }
 
-    &--h4{
-        color: white;
-        font-size: 2rem;
+    @include respond(phone) {
+        font-size: 1rem;
     }
 }
 
-.body{
-    font-size: 1.8rem;
-
-    &__view{
-        font-size: 2rem;
-    }
+th{
+    font-weight: bolder;
+    text-transform: uppercase;
+    color: $color-primary;
 }
 
 select{
@@ -51,6 +37,49 @@ select{
     }
 }
 
+.header__header{
+    text-align: center;
+}
+
+.header__text {
+    display: flex;
+
+    &--h1 {
+        color: white;
+        font-size: 10rem;
+
+        @include respond(tab-port) {
+            font-size: 5rem;
+        }
+
+
+        @include respond(phone) {
+            top: 30%;
+            font-size: 4rem;
+        }
+    }
+
+    &--h4 {
+        color: white;
+        font-size: 2rem;
+
+        @include respond(tab-port){
+            font-size: 2rem;
+        }
+    
+        @include respond(phone){
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.body{
+    font-size: 1.8rem;
+
+    &__view{
+        font-size: 2rem;
+    }
+}
 
 .bold{
     font-weight: bold;
@@ -62,5 +91,36 @@ select{
 .popup__text--h{
     @include respond(phone){
         font-size: 1rem;
+    }
+}
+
+.popup {
+
+    &__result {
+
+        @include respond(phone) {
+
+            font-size: 1rem;
+        }
+    }
+
+    &__text {
+
+        & * {
+            @include respond(phone) {
+                font-size: 1.4rem;
+            }
+        }
+    }
+}
+
+
+.tasks--car {
+    color: #c1c1c1;
+
+    th {
+        font-weight: bolder;
+        text-transform: uppercase;
+        color: white;
     }
 }
