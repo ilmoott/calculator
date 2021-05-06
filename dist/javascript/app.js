@@ -242,28 +242,28 @@ const data = (function(){
             regular:{
                 bathroom: 30,
                 kitchen: 30,
-                dusting: 5,
+                dusting: 4,
                 vacuum: 5,
-                mop: 5
+                mop: 4
             },
             spring:{
-                bathroom: 45,
-                kitchen: 45,
-                dusting: 8,
+                bathroom: 60,
+                kitchen: 90,
+                dusting: 10,
                 vacuum: 8,
-                mop: 5,
+                mop: 4,
                 fan: 10,
                 blinds: 15,
                 oven: 120
             },
             bond:{
                 bathroom: 60,
-                kitchen: 120,
+                kitchen: 180,
                 dusting: 5,
                 vacuum: 5,
-                mop: 5,
-                fan: 10,
-                wall: 15,
+                mop: 4,
+                fan: 5,
+                wall: 10,
                 blinds: 20,
                 oven: 120
             }
@@ -273,11 +273,11 @@ const data = (function(){
 
     var prices = {
         houseCleaning: {
-            regular:33,
-            spring: 43,
-            bond: 48
+            regular:37,
+            spring: 44,
+            bond: 47
         },
-        carpetCleaning: 40
+        carpetCleaning: 44
     };
 
     return{
@@ -294,7 +294,7 @@ const data = (function(){
                 //spring cleaning
                 else if(type === 'spring'){
                     return (bedCount, livCount, bathCount, blindsCount, ovenCount, fansCount)=>{
-                        return (bedCount * (serviceLength[service][type].mop + serviceLength[service][type].dusting + serviceLength[service][type].vacuum)) +
+                        return (bedCount * (serviceLength[service][type].mop + serviceLength[service][type].dusting + serviceLength[service][type].vacuum)) +(bedCount * 15) +
                                 (livCount * (serviceLength[service][type].mop + serviceLength[service][type].dusting + serviceLength[service][type].vacuum)) +
                                 (bathCount * serviceLength[service][type].bathroom) + serviceLength[service][type].kitchen + (ovenCount * serviceLength[service][type].oven) +
                                 (blindsCount * serviceLength[service][type].blinds) + (fansCount * serviceLength[service][type].fan);
@@ -303,7 +303,7 @@ const data = (function(){
                 //bond cleaning
                 else if(type === 'bond'){
                     return (bedCount, livCount, bathCount, blindsCount, ovenCount, fansCount)=>{
-                        return (bedCount * (serviceLength[service][type].mop + serviceLength[service][type].dusting + serviceLength[service][type].vacuum)) +
+                        return (bedCount * (serviceLength[service][type].mop +serviceLength[service][type].dusting + serviceLength[service][type].vacuum)) + 
                                 (livCount * (serviceLength[service][type].mop + serviceLength[service][type].dusting + serviceLength[service][type].vacuum)) +
                                 (bathCount * serviceLength[service][type].bathroom) + serviceLength[service][type].kitchen + (ovenCount * serviceLength[service][type].oven) +
                                 (blindsCount * serviceLength[service][type].blinds) + ((bedCount + livCount + bathCount + 1) * 4 * serviceLength[service][type].wall) + (fansCount * serviceLength[service][type].fan);
@@ -555,8 +555,8 @@ const controller = (function (view, data) {
                     let x = data.getTime(state.serviceName, state.typeID);
                     let result = x(bedCount,livCount,bathCount) / 60;
 
-                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.textContent = result.toFixed(2);
-                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.lastChild.previousSibling.firstChild.textContent = (result * 33).toFixed(2);
+                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent = result.toFixed(2); //removed .nextSibling
+                    //e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.lastChild.previousSibling.firstChild.textContent = (result * 37).toFixed(2);
                 }
                 
                 else if(state.typeID === 'spring'){
@@ -570,8 +570,8 @@ const controller = (function (view, data) {
                     let x = data.getTime(state.serviceName, state.typeID);
                     let result = x(bedCount,livCount,bathCount,blindCount,fanCount, ovenCount) / 60;
 
-                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.textContent = result.toFixed(2);
-                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.lastChild.previousSibling.firstChild.textContent = (result * 43).toFixed(2);
+                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent = result.toFixed(2); //removed .nextSibling
+                    //e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.lastChild.previousSibling.firstChild.textContent = (result * 43).toFixed(2);
                 }
 
                 else if(state.typeID === 'bond'){
@@ -585,8 +585,8 @@ const controller = (function (view, data) {
                     let x = data.getTime(state.serviceName, state.typeID);
                     let result = x(bedCount,livCount,bathCount,blindCount,fanCount, ovenCount) / 60;
 
-                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.textContent = result.toFixed(2);
-                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.lastChild.previousSibling.firstChild.textContent = (result * 48).toFixed(2);
+                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent = result.toFixed(2); //removed .nextSibling
+                    //e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.lastChild.previousSibling.firstChild.textContent = (result * 48).toFixed(2);
                 }
             }
             else if(state.serviceName === 'carpetCleaning'){
@@ -597,7 +597,7 @@ const controller = (function (view, data) {
                     
                     let result = x / 60;
 
-                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.textContent = result.toFixed(2);
+                    e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent = result.toFixed(2); //removed nextSibling.
                     e.target.parentNode.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.lastChild.previousSibling.firstChild.textContent = (roomCount * data.getPrice(state.serviceName)).toFixed(2);
             }
         }

@@ -80,7 +80,7 @@ select {
 
 .header__buttons {
   text-align: center; }
-  @media screen and (max-width: 37.5em) {
+  @media screen and (max-width: 32.5em) {
     .header__buttons {
       margin: -2rem; } }
 
@@ -141,9 +141,10 @@ transform: translate(-50%,-50%);
 
 .popup {
   visibility: hidden;
-  padding: 8rem;
+  padding: 2rem;
   position: fixed;
   width: 50%;
+  height: 90%;
   z-index: 5000;
   top: 50%;
   left: 50%;
@@ -153,16 +154,16 @@ transform: translate(-50%,-50%);
   border-radius: 3px; }
   @media screen and (max-width: 75em) {
     .popup {
-      padding: 4rem;
+      padding: 1rem;
       width: 90%;
       height: 90vh; } }
   @media screen and (max-width: 56.25em) {
     .popup {
-      padding: 3rem;
+      padding: 1rem;
       width: 90%; } }
   @media screen and (max-width: 37.5em) {
     .popup {
-      padding: 2rem;
+      padding: 1rem;
       width: 100%;
       height: 100%; } }
   .popup__options {
@@ -242,18 +243,17 @@ or purple (after clicked)
   .btn, .btn:link, .btn:visited {
     text-transform: uppercase;
     text-decoration: none;
-    padding: 1rem 4rem;
+    padding: 1rem 3rem;
     display: inline-block;
     border-radius: 10rem;
-    font-size: 1.6rem;
     transition: all .2s;
     position: relative;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     border: none;
     cursor: pointer; }
     @media screen and (max-width: 56.25em) {
       .btn, .btn:link, .btn:visited {
-        padding: 1rem 2rem; } }
+        padding: 1rem 1.8rem; } }
   .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
